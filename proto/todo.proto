@@ -1,0 +1,22 @@
+syntax="proto3";
+ 
+package proto;
+ 
+option go_package = "example.com/grpc-todo";
+ 
+message Store{
+    int64 id = 1;
+	string name = 2;
+    string description = 3;
+    bool is_open = 4;
+    repeated string address = 5;
+}
+
+message getStore{
+    int64 id = 1;
+}
+
+service StoreService{
+    rpc insertStore(Store) returns (getStore);
+    rpc getstore(getStore) returns (Store);
+}
